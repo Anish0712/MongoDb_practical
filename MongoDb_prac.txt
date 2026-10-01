@@ -1,0 +1,277 @@
+use crud_db;
+switched to db crud_db
+db.createCollection("user");
+{ ok: 1 }
+db.user.insertMany([
+  {name:"Tom",age:20,email:"tom@gmail.com",country:"Ireland"},
+])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6abdd7ded0b7d2ca0a3b3ceb')
+  }
+}
+db.user.deleteOne({name:"Tom"});
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.user.insertMany([
+  {name:"Tom",age:20,email:"tom@gmail.com",country:"Ireland"},
+  
+  {name:"Jerry",age:21,email:"jerry@gmail.com",country:"Finland"},
+  {name:"Harry",,age:22,email:"harry@gmail.com",country:"Pakistan"},
+  {name:"Ram",age:23,email:"ram@gmail.com",country:"India"},
+  {name:"Raavan",age:23,email:"raavan@gmail.com",country:"Srilanka"}
+	
+  
+]);
+SyntaxError: Unexpected token (5:16)
+
+  3 |   
+  4 |   {name:"Jerry",age:21,email:"jerry@gmail.com",country:"Finland"},
+> 5 |   {name:"Harry",,age:22,email:"harry@gmail.com",country:"Pakistan"},
+    |                 ^
+  6 |   {name:"Ram",age:23,email:"ram@gmail.com",country:"India"},
+  7 |   {name:"Raavan",age:23,email:"raavan@gmail.com",country:"Srilanka"}
+  8 | 	
+db.user.insertMany([
+  {name:"Tom",age:20,email:"tom@gmail.com",country:"Ireland"},
+  
+  {name:"Jerry",age:21,email:"jerry@gmail.com",country:"Finland"},
+  {name:"Harry",age:22,email:"harry@gmail.com",country:"Pakistan"},
+  {name:"Ram",age:23,email:"ram@gmail.com",country:"India"},
+  {name:"Raavan",age:23,email:"raavan@gmail.com",country:"Srilanka"}
+	
+  
+]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6abdd934d0b7d2ca0a3b3cec'),
+    '1': ObjectId('6abdd934d0b7d2ca0a3b3ced'),
+    '2': ObjectId('6abdd934d0b7d2ca0a3b3cee'),
+    '3': ObjectId('6abdd934d0b7d2ca0a3b3cef'),
+    '4': ObjectId('6abdd934d0b7d2ca0a3b3cf0')
+  }
+}
+db.user.find();
+{
+  _id: ObjectId('6abdd934d0b7d2ca0a3b3cec'),
+  name: 'Tom',
+  age: 20,
+  email: 'tom@gmail.com',
+  country: 'Ireland'
+}
+{
+  _id: ObjectId('6abdd934d0b7d2ca0a3b3ced'),
+  name: 'Jerry',
+  age: 21,
+  email: 'jerry@gmail.com',
+  country: 'Finland'
+}
+{
+  _id: ObjectId('6abdd934d0b7d2ca0a3b3cee'),
+  name: 'Harry',
+  age: 22,
+  email: 'harry@gmail.com',
+  country: 'Pakistan'
+}
+{
+  _id: ObjectId('6abdd934d0b7d2ca0a3b3cef'),
+  name: 'Ram',
+  age: 23,
+  email: 'ram@gmail.com',
+  country: 'India'
+}
+{
+  _id: ObjectId('6abdd934d0b7d2ca0a3b3cf0'),
+  name: 'Raavan',
+  age: 23,
+  email: 'raavan@gmail.com',
+  country: 'Srilanka'
+}
+db.user.find({age:23},{age:24});
+{
+  _id: ObjectId('6abdd934d0b7d2ca0a3b3cef'),
+  age: 23
+}
+{
+  _id: ObjectId('6abdd934d0b7d2ca0a3b3cf0'),
+  age: 23
+}
+db.user.find({age:22},{age:23});
+{
+  _id: ObjectId('6abdd934d0b7d2ca0a3b3cee'),
+  age: 22
+}
+db.user.find({country:"India"});
+{
+  _id: ObjectId('6abdd934d0b7d2ca0a3b3cef'),
+  name: 'Ram',
+  age: 23,
+  email: 'ram@gmail.com',
+  country: 'India'
+}
+db.user.updateOne(
+  {email:"raavan@gmail.com"},{$set:{email:"raone@gmail.com"}}
+);
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.user.deleteOne({name:"Harry"});
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.user.deleteMany({age:<23});
+SyntaxError: Unexpected token (1:24)
+
+> 1 | db.user.deleteMany({age:<23});
+    |                         ^
+use product_db;
+switched to db product_db
+db.createCollection("product");
+{ ok: 1 }
+db.product.insertMany([
+  {name:"laptop",category:"electronics",price:60000,quantity:2},
+  {name:"pc",category:"electronics",price:40000,quantity:4},
+  {name:"phone",category:"electronics",price:100000,quantity:10},
+  {name:"football",category:"sports",price:5000,quantity:50},
+  {name:"bat",category:"sports",price:10000,quantity:100}
+]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6abdde75d0b7d2ca0a3b3cf1'),
+    '1': ObjectId('6abdde75d0b7d2ca0a3b3cf2'),
+    '2': ObjectId('6abdde75d0b7d2ca0a3b3cf3'),
+    '3': ObjectId('6abdde75d0b7d2ca0a3b3cf4'),
+    '4': ObjectId('6abdde75d0b7d2ca0a3b3cf5')
+  }
+}
+db.product.find()
+{
+  _id: ObjectId('6abdde75d0b7d2ca0a3b3cf1'),
+  name: 'laptop',
+  category: 'electronics',
+  price: 60000,
+  quantity: 2
+}
+{
+  _id: ObjectId('6abdde75d0b7d2ca0a3b3cf2'),
+  name: 'pc',
+  category: 'electronics',
+  price: 40000,
+  quantity: 4
+}
+{
+  _id: ObjectId('6abdde75d0b7d2ca0a3b3cf3'),
+  name: 'phone',
+  category: 'electronics',
+  price: 100000,
+  quantity: 10
+}
+{
+  _id: ObjectId('6abdde75d0b7d2ca0a3b3cf4'),
+  name: 'football',
+  category: 'sports',
+  price: 5000,
+  quantity: 50
+}
+{
+  _id: ObjectId('6abdde75d0b7d2ca0a3b3cf5'),
+  name: 'bat',
+  category: 'sports',
+  price: 10000,
+  quantity: 100
+}
+db.product.find({price:{$gte:10000},{$lte:50000}});
+SyntaxError: Unexpected token (1:36)
+
+> 1 | db.product.find({price:{$gte:10000},{$lte:50000}});
+    |                                     ^
+db.product.find({price:{$gte:10000,$lte:50000}});
+{
+  _id: ObjectId('6abdde75d0b7d2ca0a3b3cf2'),
+  name: 'pc',
+  category: 'electronics',
+  price: 40000,
+  quantity: 4
+}
+{
+  _id: ObjectId('6abdde75d0b7d2ca0a3b3cf5'),
+  name: 'bat',
+  category: 'sports',
+  price: 10000,
+  quantity: 100
+}
+db.product.find({category:electronics})
+ReferenceError: electronics is not defined
+db.product.find({category:"electronics"})
+{
+  _id: ObjectId('6abdde75d0b7d2ca0a3b3cf1'),
+  name: 'laptop',
+  category: 'electronics',
+  price: 60000,
+  quantity: 2
+}
+{
+  _id: ObjectId('6abdde75d0b7d2ca0a3b3cf2'),
+  name: 'pc',
+  category: 'electronics',
+  price: 40000,
+  quantity: 4
+}
+{
+  _id: ObjectId('6abdde75d0b7d2ca0a3b3cf3'),
+  name: 'phone',
+  category: 'electronics',
+  price: 100000,
+  quantity: 10
+}
+db.product.updateOne([
+  {name:laptop},{$set:{price:90000}}
+]);
+ReferenceError: laptop is not defined
+db.product.updateOne([
+  {name:"laptop"},{$set:{price:90000}}
+]);
+MongoInvalidArgumentError: Update document requires atomic operators
+db.product.updateOne(
+  {name:"laptop"},{$set:{price:90000}}
+);
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.product.updateOne(
+  {name:"pc"},{$set:{price:20000}}
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.product.deleteMany({category:"sports"});
+{
+  acknowledged: true,
+  deletedCount: 2
+}
+db.product.deleteOne({name:"pc"});
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+product_db
+
+
